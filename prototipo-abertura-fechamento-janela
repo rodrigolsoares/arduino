@@ -1,0 +1,55 @@
+int btnAuto = 1; 
+int btnManual = 2; 
+
+int estadoAuto = 0; 
+int estadoManual = 0;
+
+int onAuto = 0;
+int onManual = 0;
+
+int abreJanela =  13;
+
+void setup() {
+  pinMode(abreJanela, OUTPUT);      
+  pinMode(btnAuto, INPUT);    
+}
+
+void loop(){
+  
+  estadoAuto = digitalRead(btnAuto);
+  onAuto = verificaBtn(estadoAuto, onAuto);
+    
+  if (onAuto == 1) {    
+    digitalWrite(abreJanela, HIGH);  
+  } 
+  else {
+    
+    estadoManual = digitalRead(btnManual);
+    onManual = verificaBtn(estadoManual, onManual);
+    
+    if (onManual == 1) {  
+    	digitalWrite(abreJanela, HIGH);
+    }else{
+    	digitalWrite(abreJanela, LOW);
+    }
+    
+    
+  }
+  
+  delay(100);
+  
+  
+}
+
+int verificaBtn(int estado, int on){
+	
+  if (estado == HIGH) {    
+    if(on == 1){
+      return 0;
+    }  else{
+      return 1;
+    }
+  }
+  
+  return on;
+}

@@ -1,0 +1,55 @@
+const int azul = 12;
+const int verde = 11;
+const int vermelho = 13;
+
+String cor;
+
+void setup(){
+  
+  Serial.begin(9600); 
+  
+  pinMode(azul, OUTPUT);
+  pinMode(verde, OUTPUT);
+  pinMode(vermelho, OUTPUT);
+  
+}
+
+void loop(){
+  
+  if(Serial.available()){
+    cor = Serial.readString();
+    Serial.println(cor);
+  }
+  
+  if(cor == "Vermelho"){
+  	vermelhoFunc();
+  }
+  
+  if(cor == "Verde"){
+  	verdeFunc();
+  }
+  
+  if(cor == "Azul"){
+  	azulFunc();
+  }
+    
+  
+}
+
+void vermelhoFunc(){
+	digitalWrite(azul, LOW);
+  	digitalWrite(verde, LOW);
+  	digitalWrite(vermelho, HIGH);
+}
+
+void verdeFunc(){
+	digitalWrite(azul, LOW);
+  	digitalWrite(verde, HIGH);
+  	digitalWrite(vermelho, LOW);
+}
+
+void azulFunc(){
+	digitalWrite(azul, HIGH);
+  	digitalWrite(verde, LOW);
+  	digitalWrite(vermelho, LOW);
+}
